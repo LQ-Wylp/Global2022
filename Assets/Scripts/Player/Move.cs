@@ -5,6 +5,8 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     public float _speed;
+
+    public float _coefSpeed;
     public float _jumpForce;
 
     private float _moveInput;
@@ -20,10 +22,17 @@ public class Move : MonoBehaviour
     private int extraJumps;
     public int extraJumpsValue;
 
+    public bool _InverseControls = false;
+
+    private float _gravityScaleInitial;
+
     void Start()
     {
+        _coefSpeed = 1;
         extraJumps = extraJumpsValue;
         _rb = GetComponent<Rigidbody2D>();
+
+        _gravityScaleInitial = _rb.gravityScale;
     }
 
     void Update()
@@ -49,7 +58,15 @@ public class Move : MonoBehaviour
         _isGrounded = Physics2D.OverlapCircle(_groundCheck.position,_checkRadius, _whatIsGrounded);
 
         _moveInput = Input.GetAxis("Horizontal");
-        _rb.velocity = new Vector2(_moveInput * _speed, _rb.velocity.y);
+
+        if(_InverseControls)
+        {
+            _rb.velocity = new Vector2(-_moveInput * _speed, _rb.velocity.y);
+        }
+        else
+        {
+            _rb.velocity = new Vector2(_moveInput * _speed, _rb.velocity.y);
+        }
 
         if(_lookAtRight == false && _moveInput > 0)
         {
@@ -60,6 +77,9 @@ public class Move : MonoBehaviour
         {
             Flip();
         }
+
+        _rb.gravityScale = _gravityScaleInitial;
+        _rb.velocity = new Vector2( _rb.velocity.x * _coefSpeed, _rb.velocity.y);
     }
 
     void Flip()

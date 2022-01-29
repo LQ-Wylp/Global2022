@@ -7,28 +7,27 @@ public class TournerEcran : MonoBehaviour
     public float _Cooldown;
     public float _Duration;
     private float _TimeEffect;
-    private float _PourcentageLerp;
+    public float _PourcentageLerp;
     public float _SpeedRotate;
 
-    private Transform _AncreCamera;
+    public GameObject _AncreCamera;
     private bool _Activated;
 
     private Quaternion _InitialRotate;
-    public Quaternion _EndRotate;
+    public Transform _EndRotate;
 
     void Start()
     {
         _InitialRotate = transform.rotation;
-        _AncreCamera = GameObject.FindGameObjectWithTag("AncreCamera").transform;
     }
     
     void Update()
     {
-        if(_Activated && _TimeEffect > _Duration)
+        if(_Activated && _TimeEffect < _Duration)
         {
             _PourcentageLerp += _SpeedRotate * Time.deltaTime;
             if(_PourcentageLerp > 1){_PourcentageLerp = 1;}
-            transform.rotation = Quaternion.Lerp(_InitialRotate, _EndRotate, _PourcentageLerp);
+            _AncreCamera.transform.rotation = Quaternion.Lerp(_InitialRotate, _EndRotate.rotation, _PourcentageLerp);
 
             _TimeEffect += Time.deltaTime;
 
@@ -37,7 +36,7 @@ public class TournerEcran : MonoBehaviour
         {
             _PourcentageLerp -= _SpeedRotate * Time.deltaTime;
             if(_PourcentageLerp < 0){_PourcentageLerp = 0;}
-            transform.rotation = Quaternion.Lerp(_InitialRotate, _EndRotate, _PourcentageLerp);
+            _AncreCamera.transform.rotation = Quaternion.Lerp(_InitialRotate, _EndRotate.rotation, _PourcentageLerp);
 
             if(_PourcentageLerp == 0)
             {
@@ -47,8 +46,9 @@ public class TournerEcran : MonoBehaviour
         }
     }
 
-    public void TurnScreen()
+    public void Cast()
     {
+        Debug.Log("Tourner Ecran");
         _PourcentageLerp = 0;
         _TimeEffect = 0;
 
