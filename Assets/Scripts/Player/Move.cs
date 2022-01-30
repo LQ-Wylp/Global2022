@@ -42,15 +42,18 @@ public class Move : MonoBehaviour
         if(_isGrounded == true)
         {
             extraJumps = extraJumpsValue;
+            animator.SetBool("Jump", false);
         }
 
         if(Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
         {
+            animator.SetBool("Jump", true);
             _rb.velocity = Vector2.up * _jumpForce;
             extraJumps --;
         }
         else if(Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && _isGrounded)
         {
+            animator.SetBool("Jump", true);
             _rb.velocity = Vector2.up * _jumpForce;
         }
     }
