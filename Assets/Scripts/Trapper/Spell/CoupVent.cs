@@ -13,16 +13,20 @@ public class CoupVent : MonoBehaviour
     private float _TimeEffect;
     private bool _Activated;
 
+    public GameObject wind;
+
     void Update()
     {
         if(_Activated)
         {
+            wind.SetActive(true);
             _TimeEffect += Time.deltaTime;
             float recul = _WindPower * Time.deltaTime;
             _Player.transform.position = new Vector3(_Player.transform.position.x - recul, _Player.transform.position.y, _Player.transform.position.z);
 
             if(_TimeEffect > _Duration)
             {
+                wind.SetActive(false);
                 _Activated = false;
             }
         }
