@@ -1,0 +1,2 @@
+[29/01/2022, 21:43:33] layer "Montagne.png": Duplicate path: Montagne.png
+[29/01/2022, 21:43:33] layer "Montagne_ronde.png": Duplicate path: Montagne_ronde.png
