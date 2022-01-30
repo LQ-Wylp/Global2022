@@ -13,6 +13,8 @@ public class Monster : MonoBehaviour
     private float pourcentage;
     private int Etat = 0;
 
+    private bool _lookAtRight = false;
+
     void Update()
     {
         if(_Pathed && _pointA != null && _pointB != null)
@@ -26,6 +28,11 @@ public class Monster : MonoBehaviour
                     pourcentage = 0;
                     Etat = 1;
                 }
+
+                if (_lookAtRight == false)
+                {
+                    Flip();
+                }
             }
             if(Etat == 1)
             {
@@ -36,12 +43,24 @@ public class Monster : MonoBehaviour
                     pourcentage = 0;
                     Etat = 0;
                 }
+
+                if (_lookAtRight == true)
+                {
+                    Flip();
+                }
             }
         }
         else
         {
             transform.position = new Vector3(transform.position.x,transform.position.y  - _fallSpeed * Time.deltaTime, transform.position.z);
         }
+    }
+    void Flip()
+    {
+        _lookAtRight = !_lookAtRight;
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+        transform.localScale = Scaler;
     }
 
     void OnTriggerEnter2D(Collider2D other)
