@@ -9,6 +9,11 @@ public class PlayerCheckpoint : MonoBehaviour
     private Move _Move;
     private PlayerHealth _PlayerHealth;
 
+    public ParticleSystem DeathParticle;
+    public Rigidbody2D rb2d;
+   
+    public GameObject VisuPlayer;
+
     void Start()
     {
         _PosInitial = transform.position;
@@ -24,15 +29,42 @@ public class PlayerCheckpoint : MonoBehaviour
     public void Respawn()
     {
         _Move.ResetVelocity();
-        if(_Respawn != null)
-        {
-            transform.position = _Respawn.position;
-        }
-        else
-        {
-             transform.position = _PosInitial;
-        }
+
+
+        _Move.enabled = false;
+        rb2d.isKinematic = true;
+        VisuPlayer.SetActive(false);
+        DeathParticle.Emit(30);
+
+
+        //invoque particule;
+
+        StartCoroutine(Death());
+
+        
 
         _PlayerHealth.LoseHealth();
     }
+
+    IEnumerator Death()
+    {
+       
+            yield return new WaitForSeconds(.5f);
+
+        if (_Respawn != null)
+        {
+            transform.position = _Respawn.position;
+            _Move.enabled = true;
+            VisuPlayer.SetActive(true);
+            rb2d.isKinematic = false;
+        }
+        else
+        {
+            transform.position = _PosInitial;
+            rb2d.isKinematic = false;
+            _Move.enabled = true;
+            VisuPlayer.SetActive(true);
+        }
+    }
+    
 }

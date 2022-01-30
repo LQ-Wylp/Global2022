@@ -11,5 +11,9 @@ public class NuageEclair : MonoBehaviour
     public void Cast()
     {
         Instantiate(_NuageEclair,_Player.transform.position, Quaternion.identity);
+
+
     }
+
+
 }

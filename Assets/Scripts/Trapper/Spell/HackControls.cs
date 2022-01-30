@@ -10,6 +10,8 @@ public class HackControls : MonoBehaviour
     private float _TimeEffect;
     private bool _Activated;
 
+    public SpawnUIHack _spawnuihack;
+
     void Update()
     {
         if(_Activated)
@@ -26,6 +28,8 @@ public class HackControls : MonoBehaviour
     public void Cast()
     {
         Debug.Log("Hack Move");
+        _spawnuihack.Spawning();
+       
         _TimeEffect = 0;
 
         _Activated = true;

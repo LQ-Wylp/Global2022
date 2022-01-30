@@ -8,6 +8,7 @@ public class Pause : MonoBehaviour
     public float _Cooldown;
     public float _Duration;
     private float _TimeEffect;
+    public GameObject IconePause;
 
     void Update()
     {
@@ -16,6 +17,7 @@ public class Pause : MonoBehaviour
             _TimeEffect += Time.deltaTime / Time.timeScale;
             if(_TimeEffect > _Duration)
             {
+                IconePause.SetActive(false);
                 _Activated = false;
                 Time.timeScale = 1;
             }
@@ -24,6 +26,7 @@ public class Pause : MonoBehaviour
 
     public void Cast()
     {
+        IconePause.SetActive(true);
         _Activated = true;
         _TimeEffect = 0;
         Time.timeScale = 0.001f;

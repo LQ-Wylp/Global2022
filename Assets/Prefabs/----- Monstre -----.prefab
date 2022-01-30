@@ -176,5 +176,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Pathed: 0
-  _speed: 0.3
-  _fallSpeed: 5
+  _speed: 0.1
+  _fallSpeed: 10
