@@ -20,6 +20,7 @@ public class SpellContain : MonoBehaviour
     public SpawnMonster _Spell_Nine;
     public Tremblement _Spell_Ten;
 
+    public CdSpell _CdSpell;
 
     void Start()
     {
@@ -69,6 +70,8 @@ public class SpellContain : MonoBehaviour
         {
             _Cd = _Spell_Ten._Cooldown;
         }
+        
+        _CdSpell.RefreshVisuel(_Cd,_waitForUse);
     }
 
     void Update()
@@ -80,6 +83,7 @@ public class SpellContain : MonoBehaviour
             {
                 _waitForUse = 0;
             }
+            _CdSpell.RefreshVisuel(_Cd,_waitForUse);
         }
     }
 
