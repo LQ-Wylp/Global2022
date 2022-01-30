@@ -8,6 +8,7 @@ public class Move : MonoBehaviour
 
     public float _coefSpeed;
     public float _jumpForce;
+    public Animator animator;
 
     private float _moveInput;
     private Rigidbody2D _rb;
@@ -33,6 +34,7 @@ public class Move : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
 
         _gravityScaleInitial = _rb.gravityScale;
+        
     }
 
     void Update()
@@ -58,6 +60,8 @@ public class Move : MonoBehaviour
         _isGrounded = Physics2D.OverlapCircle(_groundCheck.position,_checkRadius, _whatIsGrounded);
 
         _moveInput = Input.GetAxis("Horizontal");
+        if (_moveInput > 0 || _moveInput < 0) animator.SetBool("Walk", true);
+        else animator.SetBool( "Walk" , false);
 
         if(_InverseControls)
         {
