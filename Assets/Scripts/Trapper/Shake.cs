@@ -20,7 +20,7 @@ public class Shake : MonoBehaviour
         while (elapsed < duration)
         {
             float x = Random.Range(-10f, 10f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-20f, 20f) * magnitude;
 
             transform.localPosition = new Vector3(x, y, originalPos.z);
 

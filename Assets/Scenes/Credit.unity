@@ -193,16 +193,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1.43
-  m_Text: '- LEULIET Quentin
-
-    - DUVAL Axelle
-
-    - BOUSSIN Pierre
-
-    - Ait-Briim
-    Adel
-
-    - BUISSET Florine'
+  m_Text: "- LEULIET Quentin\n- DUVAL Axelle\n- BOUSSIN Pierre\n- Ait-Briim Adel\n-
+    BUISSET Florine\n- VALLEE N\xE9o"
 --- !u!222 &233835934
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1106,7 +1098,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Global Gamjam 2022
+  m_Text: Global Gamejam 2022
 --- !u!222 &1660527439
 CanvasRenderer:
   m_ObjectHideFlags: 0
